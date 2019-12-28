@@ -3,15 +3,18 @@
 
 class Pompe	{
 	private:
+		std::string name;
 		bool stat;
+		bool breakdown;
 		
 	public:
 		Pompe ();
-		Pompe ( bool stat);
+		Pompe ( char * name, bool stat, bool breakdown);
 		~Pompe();
 		bool getPumpStat();
+		bool getPumpBreakdown();
 		void printPumpStat();
-	
+		void setBreakDown();
 };
 
 

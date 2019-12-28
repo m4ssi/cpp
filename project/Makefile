@@ -6,13 +6,13 @@ INC= -I./include
 all: obj exe
 
 exe:
-	./simulation
+	./simulation.exe
 
 
 #	Ajouter a la suite de "obj:" les methodes de creation des fichiers .o
 
 obj: pompe main
-	${CFLAGS} -o simulation $(DIR)*.o
+	${CFLAGS} -o simulation.exe $(DIR)*.o
 
 #	Fichiers .o a creer
 
