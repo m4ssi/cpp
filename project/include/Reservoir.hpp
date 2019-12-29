@@ -5,13 +5,14 @@
 
 class Reservoir	{
 	private:
-		Pompe primary;
-		Pompe emergency;
+		std::string name;
+		Pompe * primary;
+		Pompe * emergency;
 		
 	public:
-	
-	
-}
-
+		Reservoir();
+		Reservoir( char * name, Pompe * primary, Pompe * emergency);
+		~Reservoir();
+};
 
 #endif
