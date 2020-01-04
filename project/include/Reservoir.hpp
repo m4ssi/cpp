@@ -6,13 +6,19 @@
 class Reservoir	{
 	private:
 		std::string name;
+		int lvl;
 		Pompe * primary;
 		Pompe * emergency;
 		
 	public:
 		Reservoir();
-		Reservoir( char * name, Pompe * primary, Pompe * emergency);
+		Reservoir( const char * name);
 		~Reservoir();
+		
+		Pompe * getPrimaryPump();
+		Pompe * getEmergencyPump();
+		int getLevel ();
+		void dropLevel();
 };
 
 #endif

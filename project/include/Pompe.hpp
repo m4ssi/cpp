@@ -9,7 +9,7 @@ class Pompe	{
 		
 	public:
 		Pompe ();
-		Pompe ( char * name, bool stat, bool breakdown);
+		Pompe ( const char * name, bool stat, bool breakdown);
 		~Pompe();
 		bool getPumpStat();
 		bool getPumpBreakdown();

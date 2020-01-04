@@ -12,8 +12,10 @@ class Moteur	{
 		
 	public:
 		Moteur ();
-		Moteur ( char * name, Reservoir * feed, Pompe * routing);
+		Moteur ( const char * name, Reservoir * feed, Pompe * routing);
 		~Moteur();
+		
+		Reservoir * getFeed();
 };
 
 

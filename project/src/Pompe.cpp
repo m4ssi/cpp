@@ -4,7 +4,7 @@
 using namespace std;
 
 Pompe::Pompe () : name("no_name"), stat(false), breakdown(false) {};
-Pompe::Pompe ( char * name, bool stat, bool breakdown) : name(name), stat(stat), breakdown(breakdown) {};
+Pompe::Pompe ( const char * name, bool stat, bool breakdown) : name(name), stat(stat), breakdown(breakdown) {};
 Pompe::~Pompe() {};
 
 bool Pompe::getPumpStat()	{
@@ -16,7 +16,7 @@ bool Pompe::getPumpBreakdown()	{
 }
 
 void Pompe::printPumpStat()	{
-	cout << "Pompe : " << this->name << " " <<(this->stat ? "Ouverte" : "Fermee" ) << " " 
+	cout << this->name << " " <<(this->stat ? "Ouverte" : "Fermee" ) << " " 
 		 <<(this->breakdown ? "En Panne" : "Sans Panne" ) << endl;
 }
 
