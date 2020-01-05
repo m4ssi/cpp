@@ -12,6 +12,7 @@ class Vanne	{
 	
 		void closeVanne();
 		void openVanne();
+		friend std::ostream& operator<< ( std::ostream& os, const Vanne& v);
 };
 
 #endif

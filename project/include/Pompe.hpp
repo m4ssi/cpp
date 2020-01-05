@@ -15,6 +15,8 @@ class Pompe	{
 		bool getPumpBreakdown();
 		void printPumpStat();
 		void setBreakDown();
+		std::string getName();
+		friend std::ostream& operator<< ( std::ostream& os, const Pompe& p);
 };
 
 

@@ -12,13 +12,16 @@ class Reservoir	{
 		
 	public:
 		Reservoir();
-		Reservoir( const char * name);
+		Reservoir( const char * name, int capacity);
 		~Reservoir();
 		
 		Pompe * getPrimaryPump();
 		Pompe * getEmergencyPump();
 		int getLevel ();
 		void dropLevel();
+		void setToZero();
+		std::string getName();
+		friend std::ostream& operator<< ( std::ostream& os, const Reservoir& r);
 };
 
 #endif

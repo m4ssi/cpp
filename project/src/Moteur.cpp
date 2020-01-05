@@ -19,3 +19,8 @@ Moteur::~Moteur()	{
 Reservoir * Moteur::getFeed()	{
 	return this->feed;
 }
+
+std::ostream& operator<< ( std::ostream& os, const Moteur& m)	{
+	os << m.name << " : Alimenté par  '" << m.feed->getName() << "' via '" << m.routing->getName()<<"'"; 
+	return os;
+}

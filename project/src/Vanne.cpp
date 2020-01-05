@@ -16,3 +16,8 @@ void Vanne::openVanne()	{
 	if (this->closed)
 		this->closed = false;
 }
+
+std::ostream& operator<< ( std::ostream& os, const Vanne& v)	{
+	os << v.name << "->" << ( v.closed == true ? "Ouverte" : "Fermée");
+	return os;
+}

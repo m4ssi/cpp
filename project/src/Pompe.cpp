@@ -24,3 +24,12 @@ void Pompe::setBreakDown()	{
 	this->stat = false;
 	this->breakdown = true;
 }
+
+std::string Pompe::getName()	{
+	return this->name;
+}
+
+std::ostream& operator<< ( std::ostream& os, const Pompe& p)	{
+	os << p.name << " " <<(p.stat ? "Ouverte" : "Fermee" ) << " " <<(p.breakdown ? "En Panne" : "Sans Panne" );
+	return os;
+}

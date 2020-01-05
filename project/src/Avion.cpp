@@ -1,46 +1,15 @@
 #include <iostream>
 #include <cstdlib>
+#include <unistd.h>
 #include "Avion.hpp"
-
-/*Avion::Avion()	{
-	Reservoir tank1 ( "Tank1"), tank2 ( "Tank2"), tank3 ( "Tank3");
-	
-	Vanne	v12 ( "V12", false),
-			v13 ( "V13", false),
-			v23 ( "V23", false);
-	Vanne	vt12 ( "VT12", false),
-			vt23 ( "VT23", false);
-	
-	this->tank[0] = tank1;
-	this->tank[1] = tank2;
-	this->tank[2] = tank3;
-	
-	std::cout << tank1.get
-	
-	Moteur	m1 ( "M1", &this->tank[0], this->tank[0].getPrimaryPump()),
-			m2 ( "M2", &this->tank[1], this->tank[1].getPrimaryPump()),
-			m3 ( "3", &this->tank[2], this->tank[2].getPrimaryPump());
-	
-	this->m[0] = m1;
-	this->m[1] = m2;
-	this->m[2] = m3;
-	
-	this->v[0] = v12;
-	this->v[1] = v13;
-	this->v[2] = v23;
-
-	this->vt[0] = vt12;
-	this->vt[1] = vt23;
-
-}*/
 
 Avion::Avion()	{
 	
 
 	
-	this->tank[0] = new Reservoir ( "Tank1");
-	this->tank[1] = new Reservoir ( "Tank2");
-	this->tank[2] = new Reservoir ( "Tank3");
+	this->tank[0] = new Reservoir ( "Tank1", 100);
+	this->tank[1] = new Reservoir ( "Tank2", 70);
+	this->tank[2] = new Reservoir ( "Tank3", 100);
 	
 	this->m[0] = new Moteur ( "M1", this->tank[0], this->tank[0]->getPrimaryPump());
 	this->m[1] = new Moteur ( "M2", this->tank[1], this->tank[1]->getPrimaryPump());
@@ -66,7 +35,7 @@ Avion::~Avion() {
 	
 };
 
-Reservoir * Avion::getTank ( int num)	{
+/*Reservoir * Avion::getTank ( int num)	{
 	if ( num > -1 and num < 3)
 		return this->tank[num];
 //	return 0;
@@ -88,18 +57,65 @@ Vanne * Avion::getVanneVT ( int num)	{
 	if ( num > -1 and num < 2)
 		return this->v[num];
 //	return 0;
+}*/
+
+std::ostream& operator<<( std::ostream& os, const Avion& a)	{
+	os << "Statistique de l'avion : "<< std::endl;
+	for (int i = 0; i < 3; i++)	{
+		os << *a.tank[i] << std::endl;
+	}
+	os << std::endl;
+	for (int i = 0; i < 3; i++)	{
+		os << *a.m[i] << std::endl;
+	}
+	os << std::endl;
+	for (int i = 0; i < 3; i++)	{
+		os << *a.v[i] << std::endl;
+	}
+	os << std::endl;
+	for (int i = 0; i < 2; i++)	{
+		os << *a.vt[i] << std::endl;
+	}
+	return os;
 }
 
-void Avion::printStat()	{
-	std::cout	<< "Statistiques de l'avion : " 
-				<< "\n\tTank1 : " << "Niveau -> " << this->getTank(0)->getLevel() << "\n\t\t";
-				this->getTank(0)->getPrimaryPump()->printPumpStat(); std::cout << "\t\t";
-				this->getTank(0)->getEmergencyPump()->printPumpStat();
+void Avion::action ( std::string s)	{
+	if ( s[0] == 't' || s[0] == 'T')
+		this->tank[ (int) s.back()-'1']->setToZero();
+	
+}
 
+void Avion::decision ( std::string s)	{
+	int space = 0;
+	for (unsigned int i = 0; i < s.length(); i++)
+		if ( s[i] == ' ')
+			space++;
+	if ( space == 0)
+		this->action(s);		
+	else	{
+		std::string str[space+1];
+		int j = 0;
+		for (unsigned int i = 0; i < s.length(); i++)	{
+			if ( s[i] == ' ') j++;
+			else str[j] += s[i];
+		}
+		for (int i = 0; i < space+1; i++)
+			this->action( str[i]);
+	}
 }
 
 void Avion::simulation()	{
-	this->printStat();
+	while (this->tank[0]->getLevel() + this->tank[1]->getLevel() + this->tank[2]->getLevel() > 0)	{
+		std::string s;
+		std::cout << "\033[H\033[2J" << *this << std::endl;
+		for (int i = 0; i < 3; i++)	{
+			this->tank[i]->dropLevel();
+		}
+		std::cout << "Veuillez saisir un ordre : " ;
+		getline (std::cin, s);
+		this->decision(s);
+		sleep(1);
+	}
 }
 
 /*void Avion::fuel_level ()	{

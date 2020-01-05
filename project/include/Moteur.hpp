@@ -16,6 +16,7 @@ class Moteur	{
 		~Moteur();
 		
 		Reservoir * getFeed();
+		friend std::ostream& operator<< ( std::ostream& os, const Moteur& m);
 };
 
 

@@ -8,10 +8,10 @@ Reservoir::Reservoir() : name("no_name")	{
 	this->lvl = 0;
 }
 
-Reservoir::Reservoir( const char * name) : name( name)	{
+Reservoir::Reservoir( const char * name, int capacity) : name( name)	{
 	this->primary = new Pompe ("p11", true, false);
 	this->emergency = new Pompe ("p12", false, false);
-	this->lvl = 100;
+	this->lvl = capacity;
 }
 
 Reservoir::~Reservoir()	{
@@ -31,6 +31,19 @@ void Reservoir::dropLevel()	{
 	this->lvl = this->lvl - 5;
 }
 
+void Reservoir::setToZero()	{
+	this->lvl = 0;
+}
+
 Pompe * Reservoir::getEmergencyPump()	{
 	return this->emergency;
+}
+
+std::string Reservoir::getName()	{
+	return this->name;
+}
+
+std::ostream& operator<< ( std::ostream& os, const Reservoir& r)	{
+	os << r.name << " : Niveau -> " << r.lvl << std::endl << "--" << *r.primary << std::endl << "--" << *r.emergency;
+	return os;
 }
