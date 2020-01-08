@@ -1,6 +1,7 @@
 #ifndef _H_AVION_
 #define _H_AVION_
 
+#include <iostream>
 
 #include "Reservoir.hpp"
 #include "Pompe.hpp"
@@ -8,7 +9,7 @@
 #include "Vanne.hpp"
 
 class Avion	{
-	private:
+	protected:
 		Reservoir * tank[3];
 		Moteur * m[3];
 		Vanne * v[3];

@@ -35,29 +35,25 @@ Avion::~Avion() {
 	
 };
 
-/*Reservoir * Avion::getTank ( int num)	{
-	if ( num > -1 and num < 3)
-		return this->tank[num];
+Reservoir * Avion::getTank ( int num)	{
+	return this->tank[num];
 //	return 0;
 }
 
 Moteur * Avion::getMoteur ( int num)	{
-	if ( num > -1 and num < 3)
-		return this->m[num];
+	return this->m[num];
 //	return 0;
 }
 
 Vanne * Avion::getVanneV ( int num)	{
-	if ( num > -1 and num < 3)
-		return this->v[num];
+	return this->v[num];
 //	return 0;
 }
 
 Vanne * Avion::getVanneVT ( int num)	{
-	if ( num > -1 and num < 2)
-		return this->v[num];
+	return this->vt[num];
 //	return 0;
-}*/
+}
 
 std::ostream& operator<<( std::ostream& os, const Avion& a)	{
 	os << "Statistique de l'avion : "<< std::endl;

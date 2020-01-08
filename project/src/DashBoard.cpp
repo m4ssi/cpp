@@ -3,6 +3,7 @@
 
 DashBoard::DashBoard()	{
 	
+	this->a = nullptr;
 	tank[0] = new Bouton ( "./res/button_tank1.bmp", "./res/button_hoven_tank1.bmp", 50, 250, 125, 50);
 	tank[1] = new Bouton ( "./res/button_tank2.bmp", "./res/button_hoven_tank2.bmp", 250, 250, 125, 50);
 	tank[2] = new Bouton( "./res/button_tank1.bmp", "./res/button_hoven_tank1.bmp", 450, 250, 125, 50);
@@ -15,6 +16,7 @@ DashBoard::DashBoard()	{
 	vt[1] = new Bouton ( "./res/button_vt23.bmp", "./res/button_hoven_vt23.bmp", 350, 50, 125, 50);
 };
 
+
 DashBoard::~DashBoard()	{
 	for (int i = 0; i < 3; i++)	{
 		delete this->tank[i];
@@ -22,6 +24,29 @@ DashBoard::~DashBoard()	{
 	}
 	for (int i = 0; i < 2; i++)
 		delete this->vt[i];
+}
+
+void DashBoard::setAvion ( Avion * a)	{
+	this->a = a;
+	for (int i = 0; i < 3; i++)	{
+		this->tank[i]->setAction ( a->getTank(i));
+		this->v[i]->setAction ( a->getVanneV(i));
+	}
+	for (int i = 0; i < 2; i++)
+		this->vt[i]->setAction ( a->getVanneVT(i));
+		
+	
+	
+}
+
+void DashBoard::action( int _x, int _y)	{
+	for (int i = 0; i < 3; i++)	{
+		this->tank[i]->action( _x, _y);
+		this->v[i]->action( _x, _y);
+	}
+	for (int i = 0; i < 2; i++)	{
+		this->vt[i]->action ( _x, _y);
+	}
 }
 
 void DashBoard::display( SDL_Surface * s, int _x, int _y)	{

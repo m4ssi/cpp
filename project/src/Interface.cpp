@@ -1,7 +1,8 @@
 #include "Interface.hpp"
 
-Interface::Interface() {
-
+Interface::Interface()  {
+	this->a = new Avion();
+	this->d.setAvion(this->a);
     SDL_Init(SDL_INIT_VIDEO);
 	SDL_WM_SetCaption("Simulation de vol", NULL);
     this->s = SDL_SetVideoMode( 625, 450, 32, SDL_HWSURFACE);
@@ -11,7 +12,9 @@ Interface::Interface() {
 	}	
 }
 
-Interface::~Interface()	{};
+Interface::~Interface()	{
+	delete a;
+};
 
 void Interface::getEvent()	{
 	SDL_Event e;
@@ -28,6 +31,12 @@ void Interface::getEvent()	{
 				x = e.motion.x;
 				y = e.motion.y;
 				this->display( x, y);
+				break;
+			case SDL_MOUSEBUTTONUP:
+				x = e.button.x;
+				y = e.button.y;
+				this->d.action ( x, y);
+				std::cout << *a << std::endl;
 				break;
 		}
 	}
