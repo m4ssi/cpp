@@ -1,7 +1,9 @@
 #ifndef _H_VANNE_
 #define _H_VANNE_
 
-class Vanne	{
+#include "Action.hpp"
+
+class Vanne	: public Action{
 	private:
 		std::string name;
 		bool closed;
@@ -12,6 +14,7 @@ class Vanne	{
 	
 		void closeVanne();
 		void openVanne();
+		void action();
 		friend std::ostream& operator<< ( std::ostream& os, const Vanne& v);
 };
 

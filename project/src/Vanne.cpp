@@ -3,8 +3,8 @@
 
 #include "Vanne.hpp"
 
-Vanne::Vanne() : name("no_name"), closed(false)	{};
-Vanne::Vanne( const char * name, bool closed) : name( name), closed( closed)	{};
+Vanne::Vanne() : Action(), name("no_name"), closed(false)	{};
+Vanne::Vanne( const char * name, bool closed) : Action(), name( name), closed( closed)	{};
 Vanne::~Vanne() {};
 
 void Vanne::closeVanne()	{
@@ -20,4 +20,8 @@ void Vanne::openVanne()	{
 std::ostream& operator<< ( std::ostream& os, const Vanne& v)	{
 	os << v.name << "->" << ( v.closed == true ? "Ouverte" : "Fermée");
 	return os;
+}
+
+void Vanne::action()	{
+	this->closed = not this->closed;
 }

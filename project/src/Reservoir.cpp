@@ -2,13 +2,13 @@
 #include <cstdlib>
 #include "Reservoir.hpp"
 
-Reservoir::Reservoir() : name("no_name")	{
+Reservoir::Reservoir() : Action(), name("no_name")	{
 	this->primary = nullptr;
 	this->emergency = nullptr;
 	this->lvl = 0;
 }
 
-Reservoir::Reservoir( const char * name, int capacity) : name( name)	{
+Reservoir::Reservoir( const char * name, int capacity) :  Action(), name( name)	{
 	this->primary = new Pompe ("p11", true, false);
 	this->emergency = new Pompe ("p12", false, false);
 	this->lvl = capacity;
@@ -31,7 +31,7 @@ void Reservoir::dropLevel()	{
 	this->lvl = this->lvl - 5;
 }
 
-void Reservoir::setToZero()	{
+void Reservoir::action()	{
 	this->lvl = 0;
 }
 

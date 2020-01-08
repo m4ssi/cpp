@@ -81,7 +81,7 @@ std::ostream& operator<<( std::ostream& os, const Avion& a)	{
 
 void Avion::action ( std::string s)	{
 	if ( s[0] == 't' || s[0] == 'T')
-		this->tank[ (int) s.back()-'1']->setToZero();
+		this->tank[ (int) s.back()-'1']->action();
 	
 }
 

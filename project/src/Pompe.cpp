@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Pompe::Pompe () : name("no_name"), stat(false), breakdown(false) {};
-Pompe::Pompe ( const char * name, bool stat, bool breakdown) : name(name), stat(stat), breakdown(breakdown) {};
+Pompe::Pompe () : Action(), name("no_name"), stat(false), breakdown(false) {};
+Pompe::Pompe ( const char * name, bool stat, bool breakdown) : Action(), name(name), stat(stat), breakdown(breakdown) {};
 Pompe::~Pompe() {};
 
 bool Pompe::getPumpStat()	{
@@ -23,6 +23,15 @@ void Pompe::printPumpStat()	{
 void Pompe::setBreakDown()	{
 	this->stat = false;
 	this->breakdown = true;
+}
+
+void Pompe::action()	{
+	if ( not this->breakdown)	{
+		if ( this->stat)
+			this->stat =false;
+		else
+			this->stat = true;
+	}
 }
 
 std::string Pompe::getName()	{

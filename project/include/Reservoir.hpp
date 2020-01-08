@@ -1,9 +1,10 @@
 #ifndef _H_RESERVOIR_
 #define _H_RESERVOIR_
 
+#include "Action.hpp"
 #include "Pompe.hpp"
 
-class Reservoir	{
+class Reservoir	: public Action	{
 	private:
 		std::string name;
 		int lvl;
@@ -19,7 +20,7 @@ class Reservoir	{
 		Pompe * getEmergencyPump();
 		int getLevel ();
 		void dropLevel();
-		void setToZero();
+		void action();
 		std::string getName();
 		friend std::ostream& operator<< ( std::ostream& os, const Reservoir& r);
 };

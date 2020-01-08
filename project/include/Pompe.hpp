@@ -1,7 +1,9 @@
 #ifndef _H_POMPE_
 #define _H_POMPE_
 
-class Pompe	{
+#include "Action.hpp"
+
+class Pompe	: public Action{
 	private:
 		std::string name;
 		bool stat;
@@ -15,6 +17,7 @@ class Pompe	{
 		bool getPumpBreakdown();
 		void printPumpStat();
 		void setBreakDown();
+		void action();
 		std::string getName();
 		friend std::ostream& operator<< ( std::ostream& os, const Pompe& p);
 };
