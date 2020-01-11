@@ -3,6 +3,7 @@
 
 
 #include "Bouton.hpp"
+#include "Selecteur.hpp"
 #include "Avion.hpp"
 
 class DashBoard	{
@@ -10,6 +11,8 @@ class DashBoard	{
 		Bouton * vt[2];
 		Bouton * v[3];
 		Bouton * tank[3];
+		Bouton * p[6];
+		Selecteur * p_b[6];
 		Avion * a;
 		
 	public:

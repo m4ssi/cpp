@@ -75,28 +75,23 @@ std::ostream& operator<<( std::ostream& os, const Avion& a)	{
 	return os;
 }
 
-void Avion::action ( std::string s)	{
-	if ( s[0] == 't' || s[0] == 'T')
-		this->tank[ (int) s.back()-'1']->action();
-	
-}
 
-void Avion::decision ( std::string s)	{
-	int space = 0;
-	for (unsigned int i = 0; i < s.length(); i++)
-		if ( s[i] == ' ')
-			space++;
-	if ( space == 0)
-		this->action(s);		
-	else	{
-		std::string str[space+1];
-		int j = 0;
-		for (unsigned int i = 0; i < s.length(); i++)	{
-			if ( s[i] == ' ') j++;
-			else str[j] += s[i];
-		}
-		for (int i = 0; i < space+1; i++)
-			this->action( str[i]);
+
+void Avion::action ()	{
+	if ( this->vt[0]->getStat() and this->vt[1]->getStat())	{
+		int _lvl = (this->tank[0]->getLevel() + this->tank[1]->getLevel() + this->tank[2]->getLevel() )/3;
+		for (int i = 0; i < 3; i++)
+			this->tank[i]->setLevel( _lvl);
+	}
+	else if ( this->vt[0]->getStat() and not this->vt[1]->getStat())	{
+		int _lvl = (this->tank[0]->getLevel() + this->tank[1]->getLevel())/2;
+		for (int i = 0; i < 2; i++)
+			this->tank[i]->setLevel( _lvl);		
+	}
+	else if ( not this->vt[0]->getStat() and this->vt[1]->getStat())	{
+		int _lvl = (this->tank[1]->getLevel() + this->tank[2]->getLevel() )/2;
+		for (int i = 1; i < 3; i++)
+			this->tank[i]->setLevel( _lvl);		
 	}
 }
 
@@ -109,7 +104,7 @@ void Avion::simulation()	{
 		}
 		std::cout << "Veuillez saisir un ordre : " ;
 		getline (std::cin, s);
-		this->decision(s);
+//		this->decision(s);
 		sleep(1);
 	}
 }

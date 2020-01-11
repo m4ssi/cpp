@@ -25,3 +25,7 @@ std::ostream& operator<< ( std::ostream& os, const Vanne& v)	{
 void Vanne::action()	{
 	this->closed = not this->closed;
 }
+
+bool Vanne::getStat()	{
+	return this->closed;
+}

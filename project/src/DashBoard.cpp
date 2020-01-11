@@ -14,6 +14,21 @@ DashBoard::DashBoard()	{
 
 	vt[0] = new Bouton ( "./res/button_vt12.bmp", "./res/button_hoven_vt12.bmp", 150, 50, 125, 50);
 	vt[1] = new Bouton ( "./res/button_vt23.bmp", "./res/button_hoven_vt23.bmp", 350, 50, 125, 50);
+
+	p[0] = new Bouton ( "./res/button_p11.bmp", "./res/button_hoven_p11.bmp", 50, 350, 50, 50);
+	p[1] = new Bouton ( "./res/button_p12.bmp", "./res/button_hoven_p12.bmp", 125, 350, 50, 50);
+	p[2] = new Bouton ( "./res/button_p11.bmp", "./res/button_hoven_p11.bmp", 250, 350, 50, 50);
+	p[3] = new Bouton ( "./res/button_p12.bmp", "./res/button_hoven_p12.bmp", 325, 350, 50, 50);
+	p[4] = new Bouton ( "./res/button_p11.bmp", "./res/button_hoven_p11.bmp", 450, 350, 50, 50);
+	p[5] = new Bouton ( "./res/button_p12.bmp", "./res/button_hoven_p12.bmp", 525, 350, 50, 50);
+	
+
+	p_b[0] = new Selecteur ( "./res/button_breakdow_p11.bmp", 50, 450, 50, 50);
+	p_b[1] = new Selecteur ( "./res/button_breakdow_p12.bmp", 125, 450, 50, 50);
+	p_b[2] = new Selecteur ( "./res/button_breakdow_p11.bmp", 250, 450, 50, 50);
+	p_b[3] = new Selecteur ( "./res/button_breakdow_p12.bmp", 325, 450, 50, 50);
+	p_b[4] = new Selecteur ( "./res/button_breakdow_p11.bmp", 450, 450, 50, 50);
+	p_b[5] = new Selecteur ( "./res/button_breakdow_p12.bmp", 525, 450, 50, 50);	
 };
 
 
@@ -24,6 +39,10 @@ DashBoard::~DashBoard()	{
 	}
 	for (int i = 0; i < 2; i++)
 		delete this->vt[i];
+	for (int i = 0; i < 6; i++)	{
+		delete this->p[i];
+	}
+	
 }
 
 void DashBoard::setAvion ( Avion * a)	{
@@ -34,6 +53,12 @@ void DashBoard::setAvion ( Avion * a)	{
 	}
 	for (int i = 0; i < 2; i++)
 		this->vt[i]->setAction ( a->getVanneVT(i));
+	for (int i = 0; i < 3; i++)	{
+		this->p[(i+1)*2 - 2]->setAction( a->getTank(i)->getPrimaryPump());
+		this->p_b[(i+1)*2 - 2]->setAction( a->getTank(i)->getPrimaryPump());
+		this->p[(i+1)*2 - 1]->setAction( a->getTank(i)->getEmergencyPump());
+		this->p_b[(i+1)*2 - 1]->setAction( a->getTank(i)->getEmergencyPump());
+	}
 		
 	
 	
@@ -47,6 +72,11 @@ void DashBoard::action( int _x, int _y)	{
 	for (int i = 0; i < 2; i++)	{
 		this->vt[i]->action ( _x, _y);
 	}
+	for (int i = 0; i < 6; i++)	{
+		this->p[i]->action( _x, _y);
+		this->p_b[i]->action( _x, _y);
+	}
+	this->a->action();
 }
 
 void DashBoard::display( SDL_Surface * s, int _x, int _y)	{
@@ -57,4 +87,9 @@ void DashBoard::display( SDL_Surface * s, int _x, int _y)	{
 	for (int i = 0; i < 2; i++)	{
 		this->vt[i]->display( s, _x, _y);
 	}
+	for (int i = 0; i < 6; i++)	{
+		this->p[i]->display( s, _x, _y);
+		this->p_b[i]->display( s, _x, _y);
+	}
+	
 }

@@ -5,7 +5,7 @@ Interface::Interface()  {
 	this->d.setAvion(this->a);
     SDL_Init(SDL_INIT_VIDEO);
 	SDL_WM_SetCaption("Simulation de vol", NULL);
-    this->s = SDL_SetVideoMode( 625, 450, 32, SDL_HWSURFACE);
+    this->s = SDL_SetVideoMode( 625, 600, 32, SDL_HWSURFACE);
     if ( s == NULL) {
 		fprintf(stdout, "Impossible de charger le mode vidéo : %s\n", SDL_GetError());
 		exit(1);

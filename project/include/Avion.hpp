@@ -25,7 +25,7 @@ class Avion	{
 		Vanne * getVanneV ( int num);
 		Vanne * getVanneVT ( int num);
 		friend std::ostream& operator<< ( std::ostream& os, const Avion& a);
-		void action (std::string);
+		void action ();
 		void decision ( std::string s);
 		void simulation();
 //		void fuel_level ();

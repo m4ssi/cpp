@@ -27,6 +27,10 @@ int Reservoir::getLevel()	{
 	return this->lvl;
 }
 
+void Reservoir::setLevel( int _lvl)	{
+	this->lvl = _lvl;
+}
+
 void Reservoir::dropLevel()	{
 	this->lvl = this->lvl - 5;
 }

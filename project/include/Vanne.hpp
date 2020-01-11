@@ -16,6 +16,7 @@ class Vanne	: public Action{
 		void openVanne();
 		void action();
 		friend std::ostream& operator<< ( std::ostream& os, const Vanne& v);
+		bool getStat();
 };
 
 #endif

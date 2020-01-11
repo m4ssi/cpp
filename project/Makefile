@@ -13,7 +13,7 @@ exe:
 
 #	Ajouter a la suite de "obj:" les methodes de creation des fichiers .o
 
-obj: action pompe reservoir moteur vanne avion interface dashboard bouton image main
+obj: clean action pompe reservoir moteur vanne avion interface dashboard bouton selecteur image main
 	${CFLAGS} -o simulation.exe $(DIR)*.o  ${LDFLAGS} ${SDLFLAGS}
 
 #	Fichiers .o a creer
@@ -47,6 +47,10 @@ dashboard:
 
 bouton:
 	${CFLAGS} -c -o $(DIR)Bouton.o $(SRC)Bouton.cpp ${INC} ${LDFLAGS} ${SDLFLAGS}
+
+selecteur:
+	${CFLAGS} -c -o $(DIR)Selecteur.o $(SRC)Selecteur.cpp ${INC} ${LDFLAGS} ${SDLFLAGS}
+
 
 image:
 	${CFLAGS} -c -o $(DIR)Boutin.o $(SRC)Image.cpp ${INC} ${LDFLAGS} ${SDLFLAGS}		

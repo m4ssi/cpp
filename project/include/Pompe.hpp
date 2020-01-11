@@ -2,6 +2,7 @@
 #define _H_POMPE_
 
 #include "Action.hpp"
+#include <string>
 
 class Pompe	: public Action{
 	private:

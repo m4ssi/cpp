@@ -21,6 +21,7 @@ void Pompe::printPumpStat()	{
 }
 
 void Pompe::setBreakDown()	{
+	//cout << "Meeeeeeeeeeeeeeeeeeeerde!!!! " << this->name << endl;
 	this->stat = false;
 	this->breakdown = true;
 }
